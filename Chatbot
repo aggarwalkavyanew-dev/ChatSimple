@@ -1,0 +1,70 @@
+import random
+from datetime import datetime
+
+def chatbot():
+    print("Hi! I'm ChatSimple. Type 'bye' to exit.\n")
+
+    jokes = [
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "Why did the math book look sad? Because it had too many problems.",
+        "Parallel lines have so much in common... it's a shame they'll never meet."
+    ]
+
+    facts = [
+        "Did you know? Honey never spoils.",
+        "The Eiffel Tower can grow taller in summer due to heat expansion.",
+        "Bananas are berries, but strawberries aren't."
+    ]
+
+    while True:
+        user_input = input("You: ").lower().strip()
+
+        # Exit condition
+        if "bye" in user_input or "exit" in user_input:
+            print("ChatSimple: Goodbye! Have a great day!")
+            break
+
+        # Greetings
+        elif any(word in user_input for word in ["hi", "hello", "hey"]):
+            print(random.choice([
+                "ChatSimple: Hello there!",
+                "ChatSimple: Hey! How can I help?",
+                "ChatSimple: Hi! Nice to talk to you."
+            ]))
+
+        elif "your name" in user_input:
+            print("ChatSimple: I'm ChatSimple, your friendly chatbot.")
+
+        elif "how are you" in user_input:
+            print("ChatSimple: I'm just code, but I'm running smoothly!")
+
+        elif "help" in user_input:
+            print("ChatSimple: You can ask me for jokes, facts, the time, or simple math!")
+
+        elif "time" in user_input:
+            now = datetime.now().strftime("%H:%M:%S")
+            print(f"ChatSimple: The current time is {now}.")
+
+        elif "date" in user_input:
+            today = datetime.now().strftime("%A, %B %d, %Y")
+            print(f"ChatSimple: Today's date is {today}.")
+
+        elif "joke" in user_input:
+            print(f"ChatSimple: {random.choice(jokes)}")
+
+        elif "fact" in user_input:
+            print(f"ChatSimple: {random.choice(facts)}")
+
+        elif any(op in user_input for op in ["+", "-", "*", "/"]):
+            try:
+                result = eval(user_input)
+                print(f"ChatSimple: The result is {result}")
+            except:
+                print("ChatSimple: Hmm... I couldn't calculate that. Make sure it's a simple math expression.")
+
+        else:
+            print("ChatSimple: I'm not sure how to respond. Try saying 'help'.")
+
+# Run the chatbot
+if __name__ == "__main__":
+    chatbot()
